@@ -1,11 +1,12 @@
 import "express-async-errors";
+import "./whatsapp.ts";
 import express, { NextFunction, Request, Response } from "express";
-import routes from "./routes";
+import route from "./routes";
 
 const server = express();
 
 server.use(express.json());
-server.use(routes);
+server.use(route);
 
 server.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {
@@ -23,6 +24,4 @@ server.use(
   }
 );
 
-server.listen(3000, "localhost", () => {
-  console.log("Server started.");
-});
+server.listen(3000, "localhost");

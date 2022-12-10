@@ -1,17 +1,10 @@
 import { Router } from "express";
 
-import CreateClientController from "./modules/client/create/CreateClientController";
-import ReadClientController from "./modules/client/read/ReadClientController";
-import ListClientController from "./modules/client/list/ListClientController";
+import ClientController from "./database/client/ClientController";
+const client = new ClientController();
 
-const createClient = new CreateClientController();
-const readClient = new ReadClientController();
-const listClient = new ListClientController();
+const route = Router();
 
-const routes = Router();
+route.post("/client", client.Create);
 
-routes.post("/client/create", createClient.handle);
-routes.get("/client/read/:id", readClient.handle);
-routes.get("/client/list", listClient.handle);
-
-export default routes;
+export default route;

@@ -15,6 +15,7 @@ model Clients {
   name       String
   phone      String
   email      String?
+  active     Boolean  @default(true)
   created_at DateTime @default(now())
 
   @@map("clients")
