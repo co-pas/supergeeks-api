@@ -1,0 +1,8 @@
+{
+  "name": "api-supergeeks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/natanFernandesDev/api-supergeeks.git",
+  "author": "Natan Fernandes <natangt11@gmail.com>",
+  "license": "MIT"
+}
