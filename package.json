@@ -5,6 +5,9 @@
   "repository": "https://github.com/natanFernandesDev/api-supergeeks.git",
   "author": "Natan Fernandes <natangt11@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/server.ts"
+  },
   "devDependencies": {
     "@types/express": "^4.17.14",
     "@types/node": "^18.11.12",
