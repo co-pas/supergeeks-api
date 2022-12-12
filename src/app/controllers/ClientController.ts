@@ -4,11 +4,16 @@ import prisma from "../../database/Prisma";
 export default class ClientController {
   public async create(request: Request, response: Response) {
     const { name, phone, email, active } = request.body;
-    const phoneChange = "55" + phone + "@c.us";
+
+    if (!name || !phone || !active) {
+      throw new Error("Required values to create.");
+    }
 
     if (phone.length > 10 || phone.length < 10) {
       throw new Error("Invalid phone number.");
     }
+
+    const phoneChange = "55" + phone + "@c.us";
 
     const phoneExists = await prisma.clients.count({
       where: {
@@ -32,13 +37,13 @@ export default class ClientController {
     return response.json(result);
   }
 
-  public async list(request: Request, response: Response) {
+  public async index(request: Request, response: Response) {
     const result = await prisma.clients.findMany({});
 
     return response.json(result);
   }
 
-  public async read(request: Request, response: Response) {
+  public async show(request: Request, response: Response) {
     const { id } = request.params;
     const toId = Number(id);
 
@@ -61,6 +66,59 @@ export default class ClientController {
         phone: true,
         email: true,
         active: true,
+      },
+    });
+
+    return response.json(result);
+  }
+
+  public async update(request: Request, response: Response) {
+    const { id } = request.params;
+    const toId = Number(id);
+    const { name, phone, email, active } = request.body;
+
+    const clientExists = await prisma.clients.findUnique({
+      where: {
+        id: toId,
+      },
+    });
+
+    if (!clientExists) {
+      throw new Error("Client not found.");
+    }
+
+    const result = await prisma.clients.updateMany({
+      where: {
+        id: toId,
+      },
+      data: {
+        name: name,
+        phone: phone,
+        email: email,
+        active: active,
+      },
+    });
+
+    return response.json(result);
+  }
+
+  public async delete(request: Request, response: Response) {
+    const { id } = request.params;
+    const toId = Number(id);
+
+    const clientExists = await prisma.clients.findUnique({
+      where: {
+        id: toId,
+      },
+    });
+
+    if (!clientExists) {
+      throw new Error("Client not found.");
+    }
+
+    const result = await prisma.clients.delete({
+      where: {
+        id: toId,
       },
     });
 
