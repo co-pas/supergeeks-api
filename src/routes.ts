@@ -1,10 +1,10 @@
 import { Router } from "express";
 
-import ClientController from "./database/client/ClientController";
+import ClientController from "./app/controllers/ClientController";
 const client = new ClientController();
 
 const route = Router();
 
-route.post("/client", client.Create);
+route.post("/client", client.create);
 
 export default route;
