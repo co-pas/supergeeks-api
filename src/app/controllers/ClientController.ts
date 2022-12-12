@@ -31,4 +31,39 @@ export default class ClientController {
 
     return response.json(result);
   }
+
+  public async list(request: Request, response: Response) {
+    const result = await prisma.clients.findMany({});
+
+    return response.json(result);
+  }
+
+  public async read(request: Request, response: Response) {
+    const { id } = request.params;
+    const toId = Number(id);
+
+    const clientExists = await prisma.clients.findUnique({
+      where: {
+        id: toId,
+      },
+    });
+
+    if (!clientExists) {
+      throw new Error("Client not found.");
+    }
+
+    const result = await prisma.clients.findMany({
+      where: {
+        id: toId,
+      },
+      select: {
+        name: true,
+        phone: true,
+        email: true,
+        active: true,
+      },
+    });
+
+    return response.json(result);
+  }
 }

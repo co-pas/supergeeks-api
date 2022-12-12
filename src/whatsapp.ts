@@ -1,7 +1,4 @@
 import { create } from "venom-bot";
-import ListClient from "./database/client/list/ListClient";
-
-const x = new ListClient();
 
 create(
   "Support",
