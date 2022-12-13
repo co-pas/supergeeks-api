@@ -25,5 +25,3 @@ server.use(
 );
 
 server.listen(Number(process.env.PORT), String(process.env.HOST));
-
-console.log(process.env.SG_URL);

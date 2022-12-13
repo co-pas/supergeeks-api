@@ -1,4 +1,5 @@
 import { create } from "venom-bot";
+import { addClient } from "./app/utils/wpp_functions";
 
 create(
   "Support",
@@ -12,9 +13,14 @@ create(
   //   (await x.execute()).filter((obj) => {
   //     client.sendText(obj.phone, "Oi... BOT Testing");
   //   });
+  // AO RECEBER UMA MENSAGEM:
   client.onMessage((message) => {
     if (!message.isGroupMsg) {
-      console.log(message.text);
+      //   name: message.notifyName,
+      //   phone: message.from,
+      //   active: false,
+
+      addClient(message.notifyName, message.from, false);
     }
   });
 });

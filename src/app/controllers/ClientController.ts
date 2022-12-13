@@ -5,15 +5,9 @@ export default class ClientController {
   public async create(request: Request, response: Response) {
     const { name, phone, email, active } = request.body;
 
-    if (!name || !phone || !active) {
+    if (!name || !phone) {
       throw new Error("Required values to create.");
     }
-
-    if (phone.length > 10 || phone.length < 10) {
-      throw new Error("Invalid phone number.");
-    }
-
-    //const phoneChange = "55" + phone + "@c.us";
 
     const phoneExists = await prisma.clients.count({
       where: {
