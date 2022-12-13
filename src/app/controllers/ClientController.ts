@@ -9,6 +9,10 @@ export default class ClientController {
       throw new Error("Required values to create.");
     }
 
+    if (phone.length > 17 || phone.length < 17) {
+      throw new Error("Phone number invalid.");
+    }
+
     const phoneExists = await prisma.clients.count({
       where: {
         phone: phone,

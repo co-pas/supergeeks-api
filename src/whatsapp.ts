@@ -10,16 +10,8 @@ create(
     //Nothing...
   }
 ).then(async (client) => {
-  //   (await x.execute()).filter((obj) => {
-  //     client.sendText(obj.phone, "Oi... BOT Testing");
-  //   });
-  // AO RECEBER UMA MENSAGEM:
   client.onMessage((message) => {
-    if (!message.isGroupMsg) {
-      //   name: message.notifyName,
-      //   phone: message.from,
-      //   active: false,
-
+    if (!message.isGroup && !message.isGroupMsg) {
       addClient(message.notifyName, message.from, false);
     }
   });
