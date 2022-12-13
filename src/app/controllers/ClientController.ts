@@ -43,11 +43,10 @@ export default class ClientController {
 
   public async show(request: Request, response: Response) {
     const { id } = request.params;
-    const toId = Number(id);
 
     const clientExists = await prisma.clients.findUnique({
       where: {
-        id: toId,
+        id: Number(id),
       },
     });
 
@@ -57,7 +56,7 @@ export default class ClientController {
 
     const result = await prisma.clients.findMany({
       where: {
-        id: toId,
+        id: Number(id),
       },
       select: {
         name: true,
