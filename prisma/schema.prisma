@@ -11,12 +11,24 @@ datasource db {
 }
 
 model Clients {
-  id         Int      @id @default(autoincrement())
+  id         Int        @id @default(autoincrement())
   name       String
   phone      String
   email      String?
   active     Boolean
-  created_at DateTime @default(now())
+  supports   Supports[]
+  created_at DateTime   @default(now())
 
   @@map("clients")
+}
+
+model Supports {
+  id         String   @id @default(uuid())
+  id_client  Int
+  dialog     String
+  answered   Boolean
+  client     Clients? @relation(fields: [id_client], references: [id])
+  created_at DateTime @default(now())
+
+  @@map("supports")
 }

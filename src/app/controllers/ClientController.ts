@@ -13,11 +13,11 @@ export default class ClientController {
       throw new Error("Invalid phone number.");
     }
 
-    const phoneChange = "55" + phone + "@c.us";
+    //const phoneChange = "55" + phone + "@c.us";
 
     const phoneExists = await prisma.clients.count({
       where: {
-        phone: phoneChange,
+        phone: phone,
       },
     });
 
@@ -28,7 +28,7 @@ export default class ClientController {
     const result = await prisma.clients.create({
       data: {
         name: name,
-        phone: phoneChange,
+        phone: phone,
         email: email,
         active: active,
       },
