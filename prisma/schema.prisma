@@ -10,24 +10,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Clients {
-  id         Int        @id @default(autoincrement())
-  name       String
-  phone      String
-  email      String?
-  active     Boolean
-  supports   Supports[]
-  created_at DateTime   @default(now())
-
-  @@map("clients")
-}
-
 model Supports {
   id         String   @id @default(uuid())
-  id_client  Int
+  number     String   @unique
   dialog     String
-  answered   Boolean
-  client     Clients? @relation(fields: [id_client], references: [id])
+  stage      Int?
   created_at DateTime @default(now())
 
   @@map("supports")

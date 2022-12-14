@@ -1,6 +1,6 @@
 import request from "request";
 
-export async function addClient(name: string, phone: string, active: boolean) {
+export async function addClient(name: string, phone: string) {
   return new Promise((resolve, reject) => {
     const options = {
       method: "POST",
@@ -8,7 +8,7 @@ export async function addClient(name: string, phone: string, active: boolean) {
       body: {
         name: name,
         phone: phone,
-        active: active,
+        active: false,
       },
       json: true,
     };
