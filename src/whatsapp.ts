@@ -45,7 +45,7 @@ create(
       } catch (error) {
         client.sendText(
           message.from,
-          "❌ Desculpe, mas não conseguimos processar seu pedido.\n Tente novamente mais tarde."
+          "❌ Desculpe, ocorreu um erro interno. Tente novamente mais tarde."
         );
         await prisma.supports.delete({ where: { number: message.from } });
       }
